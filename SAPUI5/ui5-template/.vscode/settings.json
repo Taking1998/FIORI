@@ -1,0 +1,8 @@
+{
+    "liveServer.settings.port": 5501,
+    "go.liveErrors": {
+
+        "enabled": false,
+        "delay": 500
+    }
+}

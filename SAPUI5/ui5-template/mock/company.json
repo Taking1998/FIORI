@@ -1,0 +1,26 @@
+{
+    "singleEntry":{
+        "firstName":"Jing",
+        "lastName":"Tao"
+    },
+	"companies" : [
+		{
+			"name" : "Acme Inc.",
+			"city": "Belmont",
+			"state": "NH",
+			"county": "Belknap",
+			"revenue" : 123214125.34  
+		},{
+			"name" : "Beam Hdg.",
+			"city": "Hancock",
+			"state": "NH",
+			"county": "Belknap",
+			"revenue" : 3235235235.23  
+		},{
+			"name" : "Carot Ltd.",
+			"city": "Cheshire",
+			"state": "NH",
+			"county": "Sullivan",
+			"revenue" : "Not Disclosed"  
+		}]
+}

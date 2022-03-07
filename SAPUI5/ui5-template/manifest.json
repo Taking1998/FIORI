@@ -1,0 +1,110 @@
+{
+    "_version": "1.37.0",
+    "start_url": "index.html",
+    "sap.app": {
+      "id": "sap.taking",
+      "type": "application",
+      "i18n": {
+        "bundleUrl": "i18n/i18n.properties",
+			  "supportedLocales": ["","zh"],
+			  "fallbackLocale": ""
+      },
+      "title": "{{appTitle}}",
+      "description": "{{appDescription}}",
+      "applicationVersion": {
+        "version": "1.0.0"
+      }
+    },
+    "sap.ui": {
+      "technology": "UI5",
+      "icons": {
+        "icon": "sap-icon://world",
+        "favIcon": "sap-icon://username",
+        "phone": "icon/launchicon/57_iPhone_Desktop_Launch.png",
+        "phone@2": "icon/launchicon/114_iPhone-Retina_Web_Clip.png",
+        "tablet": "icon/launchicon/72_iPad_Desktop_Launch.png",
+        "tablet@2": "icon/launchicon/144_iPad_Retina_Web_Clip.png"
+    },
+      "deviceTypes": {
+          "desktop": true,
+          "tablet": true,
+          "phone": true
+      }
+    },
+    "sap.ui5": {
+      "rootView": {
+          "viewName": "sap.taking.view.App",
+          "type": "XML",
+          "async":true,
+          "id": "app"
+      },
+      "dependencies": {
+        "minUI5Version": "1.98.0",
+        "libs": {
+          "sap.ui.core": {},
+          "sap.m": {}
+        }
+      },
+      "models": {
+        "i18n": {
+          "type": "sap.ui.model.resource.ResourceModel",
+          "settings": {
+            "bundleName": "sap.taking.i18n.i18n",
+            "supportedLocales": ["","zh"],
+            "fallbackLocale": ""
+          }
+        }
+      },
+      "routing":{
+        "config":{
+          "routerClass":"sap.m.routing.Router",
+          "type":"View",
+          "viewType":"XML",
+          "path":"sap.taking.view",
+          "controlId":"app",
+          "controlAggregation":"pages",
+          "transition":"slide",
+          "bypassed": {
+               "target": "notFound"
+            },
+          "async":true
+        },
+        "routes":[
+          {
+            "pattern":"",
+            "name":"app",
+            "target":"home"
+          },
+          {
+            "pattern":"dataBinding",
+            "name":"dataBinding",
+            "target":"dataBinding"
+          }
+        ],
+        "targets":{
+          "home":{
+            "id":"home",
+            "name":"Home",
+            "level":1
+          },
+          "notFound":{
+            "id":"notFound",
+            "name":"NotFound",
+            "transition":"show"
+          },
+          "dataBinding":{
+            "id":"dataBinding",
+            "name":"DataBinding",
+            "transition":"slide"
+          }
+        }
+      },
+      "resources":{
+        "css":[
+          {
+            "uri":"css/style.css"
+          }
+        ]
+      }
+    }
+  }
