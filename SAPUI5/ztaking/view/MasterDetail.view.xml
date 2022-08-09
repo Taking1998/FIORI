@@ -1,0 +1,13 @@
+<mvc:View
+    controllName="ztaking.controller.MasterDetail"
+    xmlns="sap.m"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:layout="sap.ui.layout"
+    xmlns:table="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc">
+
+
+
+
+
+</mvc:View>

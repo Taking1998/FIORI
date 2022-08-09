@@ -1,0 +1,28 @@
+{
+    "EmployeeList":[
+        {
+            "EmpId":"10001",
+            "EmpName":"Taking",
+            "EmpAge":23,
+            "EmpGender":"男"
+        },
+        {
+            "EmpId":"10002",
+            "EmpName":"Taking2",
+            "EmpAge":23,
+            "EmpGender":"男"
+        },
+        {
+            "EmpId":"10003",
+            "EmpName":"Taking3",
+            "EmpAge":23,
+            "EmpGender":"男"
+        },
+        {
+            "EmpId":"10004",
+            "EmpName":"Taking4",
+            "EmpAge":23,
+            "EmpGender":"男"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+<mvc:View
+    controllerName="ztaking.controller.employee.EmployeeList"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc">
+    <layout:BlockLayout background="Default">
+        <layout:BlockLayoutRow scrollable="true">
+            <layout:BlockLayoutCell width="25%">
+                <Label text="EmpId"/>
+                <Input />
+            </layout:BlockLayoutCell>
+            <layout:BlockLayoutCell width="25%">
+                <Label text="EmpName"/>
+                <Input />
+            </layout:BlockLayoutCell>
+            <layout:BlockLayoutCell width="25%">
+                <Label text="EmpAge"/>
+                <Input />
+            </layout:BlockLayoutCell>
+            <layout:BlockLayoutCell width="25%">
+                <Label text="EmpGender"/>
+                <Input />
+            </layout:BlockLayoutCell>
+        </layout:BlockLayoutRow>
+    </layout:BlockLayout>
+</mvc:View>

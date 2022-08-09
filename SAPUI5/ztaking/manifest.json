@@ -1,0 +1,171 @@
+{
+    "_version": "1.9.0",
+    "sap.app": {
+        "id": "ztaking",
+        "type": "application",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": ["","zh"],
+            "fallbackLocale": ""
+        },
+        "dataSources": {
+			"default": {
+				"uri": "https://services.odata.org/TripPinRESTierService/(S(id))/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		}
+    },
+    "sap.ui":{
+        "technology": "UI5",
+        "icons": {
+            "icon": "sap-icon://detail-view"
+        },
+        "deviceTypes":{
+            "phone": true,
+            "tablet": true,
+            "desktop": true
+        }
+    },
+    "sap.ui5":{
+        "rootView":{
+            "id": "app",
+            "type": "XML",
+            "async":true,
+            "viewName":"ztaking.view.App"
+        },
+        "models": {
+            "": {
+				"dataSource":"default",
+                "preload": true,
+				"settings": {
+					"autoExpandSelect": true,
+					"earlyRequests": true,
+					"operationMode": "Server",
+					"synchronizationMode": "None"
+				}
+			},
+            "i18n":{
+                "type":"sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName":"ztaking.i18n.i18n",
+                    "supportedLocales": ["","zh"],
+                    "fallbackLocale": ""
+                }
+            }
+        },
+        "resources":{
+            "css":[
+                {
+                    "uri":"css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config":{
+                "transition":"show",
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "path":"ztaking.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "async":true,
+                "bypassed":{
+                    "target":"notFound"
+                }
+            },
+            "routes":[
+                {
+                    "pattern": "",
+                    "name": "app",
+                    "target":"app"
+                },
+                {
+                    "pattern": "home",
+                    "name": "home",
+                    "target":"home"
+                },
+                {
+                    "pattern": "notFound",
+                    "name": "notFound",
+                    "target":"notFound"
+                },
+                {
+                    "pattern": "aboutRoute",
+                    "name": "aboutRoute",
+                    "target":"aboutRoute"
+                },
+                {
+                    "pattern": "iconTabBar",
+                    "name": "iconTabBar",
+                    "target":"iconTabBar"
+                },
+                {
+                    "pattern": "employeeList",
+                    "name": "employeeList",
+                    "target":["employeeListTop","employeeListData"]
+                },{
+                    "pattern": "masterDetail",
+                    "name": "masterDetail",
+                    "target":"masterDetail"
+                }
+            ],
+            "targets": {
+                "app":{
+                    "viewName":"App"
+                },
+                "home":{
+                    "viewName":"Home"
+                },
+                "notFound":{
+                    "viewName":"NotFound",
+                    "transition":"show"
+                },
+                "aboutRoute":{
+                    "viewName":"AboutRoute"
+                },
+                "iconTabBar":{
+                    "viewName":"IconTabBar"
+                },
+                "employeeList":{
+                    "id":"employeeList",
+                    "path":"ztaking.view.employee",
+                    "viewName":"EmployeeList"
+                },
+                "employeeListTop":{
+                    "parent":"employeeList",
+                    "id":"EmployeeListTop",
+                    "path":"ztaking.view.employee",
+                    "viewName":"EmployeeListTop",
+                    "controlId":"employeeListParent",
+                    "controlAggregation":"content"
+                },
+                "employeeListData":{
+                    "parent":"employeeList",
+                    "id":"EmployeeListData",
+                    "path":"ztaking.view.employee",
+                    "viewName":"EmployeeListData",
+                    "controlId":"employeeListParent",
+                    "controlAggregation":"content"
+                },
+                "masterDetail":{
+                    "viewName":"MasterDetail"
+                }
+            }
+        },
+        "dependencies": {
+            "minUI5Version": "1.101.0"
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    }
+}

@@ -1,0 +1,77 @@
+<mvc:View
+    controllerName="ztaking.controller.employee.EmployeeList"
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:table="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc">
+    <layout:BlockLayout>
+        <layout:BlockLayoutRow>
+            <layout:BlockLayoutCell>
+                <table:Table
+                    id="table1"
+                    rows="{employee>/EmployeeList}"
+                    class="sapUiSmallMarginBeginEnd">
+                    <table:columns>
+                        <table:Column hAlign="Center" width="10rem">
+                            <Label text="EmpId"/>
+                            <table:template>
+                                <Text text="{employee>EmpId}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center" width="10rem">
+                            <Label text="EmpName"/>
+                            <table:template>
+                                <Text text="{employee>EmpName}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center" width="10rem">
+                            <Label text="EmpAge"/>
+                            <table:template>
+                                <Text text="{employee>EmpAge}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center" width="10rem">
+                            <Label text="EmpGender"/>
+                            <table:template>
+                                <Text text="{employee>EmpGender}"/>
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+            </layout:BlockLayoutCell>
+            <layout:BlockLayoutCell>
+                <table:Table
+                    id="table2"
+                    rows="{employee>/EmployeeList}"
+                    class="sapUiTinyMarginBeginEnd">
+                    <table:columns>
+                        <table:Column hAlign="Center" width="10rem">
+                            <Label text="EmpId"/>
+                            <table:template>
+                                <Text text="{employee>EmpId}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center" width="10rem">
+                            <Label text="EmpName"/>
+                            <table:template>
+                                <Text text="{employee>EmpName}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center" width="10rem">
+                            <Label text="EmpAge"/>
+                            <table:template>
+                                <Text text="{employee>EmpAge}"/>
+                            </table:template>
+                        </table:Column>
+                        <table:Column hAlign="Center" width="10rem">
+                            <Label text="EmpGender"/>
+                            <table:template>
+                                <Text text="{employee>EmpGender}"/>
+                            </table:template>
+                        </table:Column>
+                    </table:columns>
+                </table:Table>
+            </layout:BlockLayoutCell>
+        </layout:BlockLayoutRow>
+    </layout:BlockLayout>
+</mvc:View>

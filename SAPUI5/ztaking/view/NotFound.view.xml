@@ -1,0 +1,11 @@
+<mvc:View
+    controllerName="ztaking.controller.NotFound"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+    <MessagePage
+        showNavButton="true"
+        navButtonPress="onNavBack"
+        title="{i18n>notFound.title}"
+        text="{i18n>notFound.text}"
+        description="{i18n>notFound.description}"/>
+</mvc:View>

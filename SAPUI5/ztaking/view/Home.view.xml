@@ -1,0 +1,43 @@
+<mvc:View
+    controllerName="ztaking.controller.Home"
+    xmlns="sap.m"
+    xmlns:upload="sap.m.upload"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Page 
+        id="home-page" 
+        title="{i18n>homePageTitle}"
+        titleAlignment="Center"
+        showNavButton="true" 
+        navButtonPress="onNavBack">
+        <Input type="Number" valueLiveUpdate="true"/>
+        <upload:UploadSet
+            id="uploadSet"
+            fileTypes="txt,png,jpg"
+            instantUpload="false"
+            maxFileNameLength="10"
+            maxFileSize="10"
+            mode="SingleSelectLeft"
+            multiple="false"
+            noDataText="noDataText"
+            noDataDescription="noDataDescription"
+            fileNameLengthExceeded="onFileNameLengthExceeded"
+            fileSizeExceeded="onFileSizeExceeded"
+            fileRenamed="onFileRename"
+            showIcons="false">
+            <upload:toolbar>
+            
+            </upload:toolbar>
+            <upload:UploadSetItem
+                thumbnailUrl="https://xiaotua.com/images/2021/06/07/202106070525433161571.jpg">
+                <upload:statuses>
+                    <ObjectStatus
+                        title="标题"
+                        text="文本"
+                        state="Success"
+                        icon="sap-icon://world"
+                        active="false"/>
+				</upload:statuses>
+            </upload:UploadSetItem>
+        </upload:UploadSet>
+    </Page>
+</mvc:View>

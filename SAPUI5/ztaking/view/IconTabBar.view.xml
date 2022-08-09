@@ -1,0 +1,50 @@
+<mvc:View
+    controllerName="ztaking.controller.IconTabBar"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc">
+    <Page 
+        id="iconTabBarPage"
+        title="iconTabBar"
+        titleAlignment="Center"
+        showNavButton="true" 
+        navButtonPress="onNavBack">
+        <IconTabBar id="iconTabBar" selectedKey="info">
+            <items>
+                <IconTabFilter 
+                    id="infoTab" 
+                    icon="sap-icon://message-information"
+                    iconColor="Positive"
+                    text="info" 
+                    key="info">
+                    <!-- <Text text="info"/> -->
+                    <core:Fragment fragmentName="ztaking.view.InfoFragment" type="XML"/>
+                </IconTabFilter>
+                <IconTabFilter 
+                    id="projectsTab" 
+                    text="projects" 
+                    icon="sap-icon://activity-items"
+                    iconColor="Critical"
+                    key="projects">
+                    <Text text="projects"/>
+                </IconTabFilter>
+                <IconTabFilter 
+                    id="hobbiesTab" 
+                    text="hobbies"
+                    icon="sap-icon://thumb-up"
+                    iconColor="Default"
+                    key="hobbies">
+                    <Text text="hobbies"/>
+                </IconTabFilter>
+                <IconTabFilter 
+                    id="notesTab" 
+                    text="notes" 
+                    icon="sap-icon://notes"
+                    iconColor="Neutral"
+                    key="notes">
+                    <Text text="notes"/>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+    </Page>
+</mvc:View>
