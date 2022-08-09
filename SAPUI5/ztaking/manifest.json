@@ -111,7 +111,8 @@
                     "pattern": "employeeList",
                     "name": "employeeList",
                     "target":["employeeListTop","employeeListData"]
-                },{
+                },
+                {
                     "pattern": "masterDetail",
                     "name": "masterDetail",
                     "target":"masterDetail"
