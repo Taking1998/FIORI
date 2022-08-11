@@ -19,6 +19,7 @@ sap.ui.define(
         appModel.setProperty("/iconTabBar", "iconTabBar");
         appModel.setProperty("/employeeList", "employeeList");
         appModel.setProperty("/test", "test");
+        appModel.setProperty("/masterDetail", "masterDetail");
         // let genericTiles = this.byId("hBox").getAggregation("items");
         // genericTiles.forEach((item) => item.setState("Loading"));
         // setTimeout(function () {

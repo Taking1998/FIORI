@@ -1,10 +1,11 @@
 sap.ui.define(
   [
     "ztaking/controller/BaseController",
+    "sap/ui/model/json/JSONModel",
     "sap/m/ObjectListItem",
     "sap/m/ObjectAttribute",
   ],
-  function (BaseController, ObjectListItem, ObjectAttribute) {
+  function (BaseController, JSONModel, ObjectListItem, ObjectAttribute) {
     "use strict";
 
     BaseController.extend("ztaking.controller.IconTabBar", {
@@ -14,12 +15,16 @@ sap.ui.define(
       },
 
       _onObjectMatched: function () {
-        let oModel = this.getView().getModel();
-        oModel.read("/Meetups", {
-          success: function (oData) {
-            console.log(oData);
-          },
-        });
+        // let oModel = this.getView().getModel();
+        // oModel.read("/Meetups", {
+        //   success: function (oData) {
+        //     console.log(oData);
+        //   },
+        // });
+        this.getView().setModel(new JSONModel(), "info");
+        let fact = [{ type: 1 }, { type: true }, { type: "123" }];
+        let infoModel = this.getView().getModel("info");
+        infoModel.setProperty("/fact", fact);
       },
 
       onInputSubmit: function (oEvent) {
@@ -53,6 +58,31 @@ sap.ui.define(
             ],
           }),
         });
+      },
+
+      createContent: function (sId, oContext) {
+        let type = oContext.getProperty("type");
+        console.log(typeof type);
+        switch (typeof type) {
+          case "string":
+            return new sap.m.Text(sId, {
+              text: {
+                path: "info>type",
+              },
+            });
+          case "number":
+            return new sap.m.Input(sId, {
+              value: {
+                path: "info>type",
+              },
+            });
+          case "boolean":
+            return new sap.m.CheckBox(sId, {
+              selected: {
+                path: "info>type",
+              },
+            });
+        }
       },
     });
   }

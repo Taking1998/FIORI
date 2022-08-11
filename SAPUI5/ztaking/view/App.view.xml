@@ -44,6 +44,15 @@
                 <core:Icon src="sap-icon://user" size="4rem"/>
               </TileContent>
             </GenericTile>
+            <GenericTile 
+              class="sapUiTinyMargin" 
+              header="masterDetail"
+              press="navTo( ${app>/masterDetail} )"
+              frameType="OneByOne">
+              <TileContent>
+                <core:Icon src="sap-icon://user" size="4rem"/>
+              </TileContent>
+            </GenericTile>
 
           
         </Page>

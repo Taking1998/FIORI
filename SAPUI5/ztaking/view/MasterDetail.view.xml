@@ -1,13 +1,168 @@
 <mvc:View
-    controllName="ztaking.controller.MasterDetail"
+    controllerName="ztaking.controller.MasterDetail"
     xmlns="sap.m"
     xmlns:semantic="sap.f.semantic"
     xmlns:layout="sap.ui.layout"
     xmlns:table="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
     xmlns:mvc="sap.ui.core.mvc">
-
-
-
-
-
+    <Page 
+        id="master-detail-page"
+        title="{i18n>masterDetail}"
+        titleAlignment="Center"
+        showNavButton="true"
+        navButtonPress="onNavBack">
+        <layout:ResponsiveSplitter defaultPane="defaultPane">
+            <layout:PaneContainer orientation="Horizontal">
+                <layout:SplitPane id="defalutPane">
+                    <!-- 初始化显示全屏 -->
+                    <layout:layoutData>
+                        <layout:SplitterLayoutData id="defaultLayout" size="100%" resizable="false"/>
+                    </layout:layoutData>
+                    <table:Table 
+                        id="table"
+                        rows="{people>/PeopleSet}"
+                        selectionMode="Single"
+                        selectionBehavior="RowOnly"
+                        rowSelectionChange="onRowSelectionChange">
+                        <table:columns>
+                            <table:Column hAlign="Center">
+                                <Label text="FirstName"/>
+                                <table:template>
+                                    <Text text="{people>FirstName}"/>
+                                </table:template>
+                            </table:Column>
+                            <table:Column hAlign="Center">
+                                <Label text="LastName"/>
+                                <table:template>
+                                    <Text text="{people>LastName}"/>
+                                </table:template>
+                            </table:Column>
+                            <table:Column hAlign="Center">
+                                <Label text="UserName"/>
+                                <table:template>
+                                    <Text text="{people>UserName}"/>
+                                </table:template>
+                            </table:Column>
+                            <table:Column hAlign="Center">
+                                <Label text="Age"/>
+                                <table:template>
+                                    <Text text="{people>Age}"/>
+                                </table:template>
+                            </table:Column>
+                        </table:columns>
+                    </table:Table>
+                </layout:SplitPane>
+                <layout:SplitPane>
+                    <semantic:SemanticPage id="detailArea" visible="false" >
+                        <semantic:titleHeading>
+                            <Title text="{people>FirstName} {people>LastName}"/>
+                        </semantic:titleHeading>
+                        <semantic:headerContent>
+                            <layout:HorizontalLayout>
+                                <layout:VerticalLayout>
+                                    <ObjectAttribute text="User Name:" class="sapUiSmallMarginEnd"/>
+                                    <ObjectAttribute text="Age:" class="sapUiSmallMarginEnd"/>
+                                </layout:VerticalLayout>
+                                <layout:VerticalLayout>
+                                    <ObjectAttribute text="{people>UserName}"/>
+                                    <ObjectNumber number="{people>Age}" numberUnit="Years"/>
+                                </layout:VerticalLayout>
+                            </layout:HorizontalLayout>
+                        </semantic:headerContent>
+                        <semantic:content>
+                            <VBox>
+                                <FlexBox wrap="Wrap">
+                                    <!-- Home Address -->
+                                    <form:Form>
+                                        <form:title>
+                                            <core:Title text="Home Address"/>
+                                        </form:title>
+                                        <form:layout>
+                                            <form:ResponsiveGridLayout
+                                                labelSpanXL="3"
+                                                labelSpanL="3"
+                                                labelSpanM="3"
+                                                labelSpanS="12"
+                                                adjustLabelSpan="false"
+                                                emptySpanXL="4"
+                                                emptySpanL="4"
+                                                emptySpanM="4"
+                                                emptySpanS="0"
+                                                columnsXL="1"
+                                                columnsL="1"
+                                                columnsM="1"
+                                                singleContainerFullSize="false"/>
+                                        </form:layout>
+                                        <form:formContainers>
+                                            <form:FormContainer>
+                                                <form:formElements>
+                                                    <form:FormElement label="Address">
+                                                        <form:fields>
+                                                            <Text text="{people>HomeAddress/Address}"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="City">
+                                                        <form:fields>
+                                                            <Text text="{people>HomeAddress/City/Name}"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="Region">
+                                                        <form:fields>
+                                                            <Text text="{people>HomeAddress/City/Region}"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement label="Country">
+                                                        <form:fields>
+                                                            <Text text="{people>HomeAddress/City/CountryRegion}"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                </form:formElements>
+                                            </form:FormContainer>
+                                        </form:formContainers>
+                                    </form:Form>
+                                    <!-- BestFriend -->
+                                    <form:Form>
+                                        <form:title>
+                                            <core:Title text="Best Friend"/>
+                                        </form:title>
+                                        <form:layout>
+                                            <form:ResponsiveGridLayout
+                                                labelSpanXL="3"
+                                                labelSpanL="3"
+                                                labelSpanM="3"
+                                                labelSpanS="12"
+                                                adjustLabelSpan="false"
+                                                emptySpanXL="4"
+                                                emptySpanL="4"
+                                                emptySpanM="4"
+                                                emptySpanS="0"
+                                                columnsXL="1"
+                                                columnsL="1"
+                                                columnsM="1"
+                                                singleContainerFullSize="false"/>
+                                        </form:layout>
+                                        <form:formContainers>
+                                            <form:FormContainer>
+                                                <form:formElements>
+                                                    <form:FormElement label="Name">
+                                                        <form:fields>
+                                                            <Text text="{people>BestFriend}"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                </form:formElements>
+                                            </form:FormContainer>
+                                        </form:formContainers>
+                                    </form:Form>
+                                </FlexBox>
+                            </VBox>
+                            
+                        </semantic:content>
+                    </semantic:SemanticPage>
+                </layout:SplitPane>
+            </layout:PaneContainer>  
+        </layout:ResponsiveSplitter>
+    </Page>
+    
 </mvc:View>

@@ -3,10 +3,12 @@
     xmlns="sap.m"
     xmlns:table="sap.ui.table"
     xmlns:core="sap.ui.core">
-    <Input id="input" submit="onInputSubmit" class="sapUiSizeCosy"/>
+    <!-- <Title text="m.Title"/> -->
+
+    <!-- <Input id="input" submit="onInputSubmit" class="sapUiSizeCosy"/>
     <Input class="sapUiSizeCompact"/>
     <Input class="sapUiSizeCondensed"/>
-    <Button text="getFirstThreeMeetups" press="onButtonPress"/>
+    <Button text="getFirstThreeMeetups" press="onButtonPress"/> -->
     <Table id="peopleList"
         growing="true"
         growingThreshold="10"
