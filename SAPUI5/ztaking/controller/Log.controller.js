@@ -16,6 +16,7 @@ sap.ui.define(
       _onObjectMatched: function () {
         this.config = {};
         oMyStorage.put("username", "20037960");
+        // 初始化JSONModel
         this.getView().setModel(new JSONModel(), "log");
         this.byId("defaultLayout").setSize("100%");
         this.byId("detailArea").setVisible(false);

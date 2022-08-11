@@ -8,6 +8,13 @@ sap.ui.define(
   function (BaseController, JSONModel, Log, Storage) {
     "use strict";
     var config;
+    const themes = [
+      "sap_horizon",
+      "sap_horizon_dark",
+      "sap_belize",
+      "sap_fiori_3",
+    ];
+
     var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.session);
 
     return BaseController.extend("ztaking.controller.App", {
@@ -20,6 +27,7 @@ sap.ui.define(
         appModel.setProperty("/employeeList", "employeeList");
         appModel.setProperty("/test", "test");
         appModel.setProperty("/masterDetail", "masterDetail");
+        appModel.setProperty("/log", "log");
         // let genericTiles = this.byId("hBox").getAggregation("items");
         // genericTiles.forEach((item) => item.setState("Loading"));
         // setTimeout(function () {
@@ -53,7 +61,7 @@ sap.ui.define(
       },
 
       _setConfig: function () {
-        config = {
+        let config = {
           username: oStorage.get("username"),
           controllerName: this.getView().getControllerName(),
           startCommandTime: this._dateTimeFormat(new Date()),
@@ -121,6 +129,25 @@ sap.ui.define(
           .then((json) => {
             console.log(json.d.results);
           });
+      },
+
+      onMenuAction: function (oEvent) {
+        let oItem = oEvent.getParameter("item");
+        let text = oItem.getProperty("text");
+        let bFlag = themes.some((item) => {
+          return item === text;
+        });
+        let core = sap.ui.getCore();
+        if (bFlag) {
+          let curTheme = core.getConfiguration().getTheme();
+          if (text !== curTheme) {
+            core.setThemeRoot(
+              `${text}`,
+              "https://sapui5.hana.ondemand.com/resources/"
+            );
+            core.applyTheme(text);
+          }
+        }
       },
 
       onChangeUrl: function () {

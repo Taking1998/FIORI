@@ -13,12 +13,15 @@
         titleAlignment="Center"
         showNavButton="true"
         navButtonPress="onNavBack">
-        <layout:ResponsiveSplitter defaultPane="defaultPane">
+        <layout:ResponsiveSplitter>
             <layout:PaneContainer orientation="Horizontal">
                 <layout:SplitPane id="defalutPane">
                     <!-- 初始化显示全屏 -->
                     <layout:layoutData>
-                        <layout:SplitterLayoutData id="defaultLayout" size="100%" resizable="false"/>
+                        <layout:SplitterLayoutData 
+                            id="defaultLayout" 
+                            size="100%" 
+                            resizable="false"/>
                     </layout:layoutData>
                     <table:Table 
                         id="table"

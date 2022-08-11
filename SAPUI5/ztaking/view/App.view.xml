@@ -8,6 +8,28 @@
     <App id="app">
       <pages>
         <Page id="app-page" title="{i18n>appPageTitle}" titleAlignment="Center">
+            <headerContent>
+              <MenuButton>
+                <menu>
+                  <Menu itemSelected="onMenuAction">
+                    <MenuItem text="主题" icon="sap-icon://palette">
+                      <items>
+                        <MenuItem text="sap_horizon" />
+                        <MenuItem text="sap_horizon_dark"/>
+                        <MenuItem text="sap_belize" />
+                        <MenuItem text="sap_fiori_3"/>
+                      </items>
+                    </MenuItem>
+                    <!-- <MenuItem text="语言" icon="sap-icon://palette">
+                      <items>
+                        <MenuItem text="中文" />
+                        <MenuItem text="英文"/>
+                      </items>
+                    </MenuItem> -->
+                  </Menu>
+                </menu>
+              </MenuButton>
+            </headerContent>
             <GenericTile 
               class="sapUiTinyMargin" 
               header="测试NotFound"
@@ -53,8 +75,15 @@
                 <core:Icon src="sap-icon://user" size="4rem"/>
               </TileContent>
             </GenericTile>
-
-          
+            <GenericTile 
+              class="sapUiTinyMargin" 
+              header="log"
+              press="navTo( ${app>/log} )"
+              frameType="OneByOne">
+              <TileContent>
+                <core:Icon src="sap-icon://user" size="4rem"/>
+              </TileContent>
+            </GenericTile>
         </Page>
       </pages>
     </App>

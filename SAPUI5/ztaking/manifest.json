@@ -116,6 +116,11 @@
                     "pattern": "masterDetail",
                     "name": "masterDetail",
                     "target":"masterDetail"
+                },
+                {
+                    "pattern": "log",
+                    "name": "log",
+                    "target":"log"
                 }
             ],
             "targets": {
@@ -158,6 +163,9 @@
                 },
                 "masterDetail":{
                     "viewName":"MasterDetail"
+                },
+                "log":{
+                    "viewName":"Log"
                 }
             }
         },
