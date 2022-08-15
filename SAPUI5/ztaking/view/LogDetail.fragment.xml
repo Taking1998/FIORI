@@ -1,0 +1,25 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:layout="sap.ui.layout"
+    xmlns:table="sap.ui.table"
+    xmlns:core="sap.ui.core">
+    <Dialog id="logDetailDialog" title="日志详情" titleAlignment="Center">
+        <layout:VerticalLayout>
+            <Text class="sapUiSmallMarginBegin sapMH4FontSize" text="接口信息:"/>
+            <Text 
+                class="sapUiSmallMarginBegin"
+                text="{=${log>/INTERFACEINFO}?JSON.stringify(JSON.parse(${log>/INTERFACEINFO}), null, '&#160;&#160;&#160;&#160;'):''}"/>
+            <Text class="sapUiSmallMarginBegin sapMH4FontSize" text="请求数据:"/>
+            <Text 
+                class="sapUiSmallMarginBegin"
+                text="{=${log>/REQUESTDATA}?JSON.stringify(JSON.parse(${log>/REQUESTDATA}), null, '&#160;&#160;&#160;&#160;'):''}"/>
+            <Text class="sapUiSmallMarginBegin sapMH4FontSize" text="响应数据:"/>
+            <Text
+                class="sapUiSmallMarginBegin"
+                text="{=${log>/RESPONSEDATA}?JSON.stringify(JSON.parse(${log>/RESPONSEDATA}), null, '&#160;&#160;&#160;&#160;'):''}"/>
+        </layout:VerticalLayout>
+        <beginButton>
+            <Button text="关闭" press="onDialogClose"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

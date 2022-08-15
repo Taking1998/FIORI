@@ -3,24 +3,25 @@ sap.ui.define(
     "ztaking/controller/BaseController",
     "sap/ui/util/Storage",
     "sap/ui/model/json/JSONModel",
+    "sap/ui/core/Fragment",
+    "ztaking/model/formatter",
   ],
-  function (BaseController, Storage, JSONModel) {
+  function (BaseController, Storage, JSONModel, Fragment, formatter) {
     "use strict";
     var oMyStorage = new Storage(Storage.Type.session, "taking");
     return BaseController.extend("ztaking.controller.Log", {
+      formatter: formatter,
       onInit: function () {
         let oRouter = this.getRouter().getRoute("log");
         oRouter.attachPatternMatched(this._onObjectMatched, this);
       },
 
       _onObjectMatched: function () {
+        var that = this;
         this.config = {};
         oMyStorage.put("username", "20037960");
         // 初始化JSONModel
         this.getView().setModel(new JSONModel(), "log");
-        this.byId("defaultLayout").setSize("100%");
-        this.byId("detailArea").setVisible(false);
-        this.byId("defaultLayout").setResizable(false);
         setTimeout(() => {
           let option = {
             method: "POST",
@@ -46,18 +47,42 @@ sap.ui.define(
       },
 
       onRowSelectionChange: function (oEvent) {
-        let oDisplayLayout = this.byId("defaultLayout"),
-          oDetailArea = this.byId("detailArea"),
-          oContext = oEvent.getParameters().rowContext;
-        oDetailArea.setBindingContext(oContext, "log");
-        oDetailArea.setVisible(true);
-        oDisplayLayout.setSize("60%");
-        oDisplayLayout.setResizable(true);
+        let that = this;
+        let index = oEvent.getSource().getSelectedIndex();
+        if (!this.byId("logDetailDialog")) {
+          Fragment.load({
+            id: this.getView().getId(),
+            name: "ztaking.view.LogDetail",
+            controller: this,
+          }).then(function (oDialog) {
+            that.getView().addDependent(oDialog);
+            that.initLogDetailDialog(index);
+            oDialog.open();
+          });
+        } else {
+          this.initLogDetailDialog(index);
+          this.byId("logDetailDialog").open();
+        }
+      },
+
+      initLogDetailDialog: function (index) {
+        let logModel = this.getView().getModel("log");
+        let logData = logModel.getProperty("/logData");
+        let item = logData[index];
+        console.log(item);
+        logModel.setProperty("/INTERFACEINFO", item.INTERFACEINFO);
+        logModel.setProperty("/REQUESTDATA", item.REQUESTDATA);
+        logModel.setProperty("/RESPONSEDATA", item.RESPONSEDATA);
+      },
+
+      onDialogClose: function () {
+        this.byId("logDetailDialog").close();
       },
 
       onPress: function (oEvent) {
         // 0-false 1-true
         this._setConfig("回车", "备注", 1);
+        this._handleCall();
       },
 
       _setConfig: function (command, remark, isCallInterface) {
@@ -76,9 +101,7 @@ sap.ui.define(
           STARTCALLINTERFACETIME: "",
           ENDCALLINTERFACETIME: "",
         };
-        if (isCallInterface) {
-          this._handleCall();
-        } else {
+        if (!isCallInterface) {
           this._handleNotCall();
         }
       },
@@ -145,7 +168,7 @@ sap.ui.define(
           .then(() => {
             end = performance.now();
             this.config.ENDCALLINTERFACETIME = this._dateTimeFormat(new Date());
-            config.PROCESSTIME = end - start;
+            this.config.PROCESSTIME = (end - start) / 1000;
             this.config.ENDCOMMANDTIME = this._dateTimeFormat(new Date());
             let options1 = {
               method: "POST",

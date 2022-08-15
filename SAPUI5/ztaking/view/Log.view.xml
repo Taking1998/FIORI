@@ -11,107 +11,109 @@
         titleAlignment="Center"
         showNavButton="true"
         navButtonPress="onNavBack">
-        <Button text="log" press="onPress"/>
-        <layout:ResponsiveSplitter>
-            <layout:PaneContainer orientation="Horizontal">
-                <layout:SplitPane id="defalutPane">
-                    <layout:layoutData>
-                        <layout:SplitterLayoutData 
-                            id="defaultLayout"
-                            size="100%"
-                            resizable="false"/>
-                    </layout:layoutData>
-                    <table:Table
-                        id="logTable"
-                        rows="{log>/logData}"
-                        selectionBehavior="RowOnly"
-                        selectionMode="Single"
-                        rowSelectionChange="onRowSelectionChange">
-                        <table:columns>
-                            <table:Column hAlign="Center">
-                                <Label text="用户名"/>
-                                <table:template>
-                                    <Text text="{log>USERNAME}"/>
-                                </table:template>
-                            </table:Column>
-                            <table:Column hAlign="Center">
-                                <Label text="控制器名称"/>
-                                <table:template>
-                                    <Text text="{log>CONTROLNAME}"/>
-                                </table:template>
-                            </table:Column>
-                            <table:Column hAlign="Center">
-                                <Label text="备注"/>
-                                <table:template>
-                                    <Text text="{log>REMARK}"/>
-                                </table:template>
-                            </table:Column>
-                            <table:Column hAlign="Center">
-                                <Label text="处理时长(s)"/>
-                                <table:template>
-                                    <Text text="{=parseFloat(${log>PROCESSTIME}).toFixed(3)}"/>
-                                </table:template>
-                            </table:Column>
-                        </table:columns>
-                    </table:Table>
-                </layout:SplitPane>
-                <layout:SplitPane>
-                    <semantic:SemanticPage id="detailArea" visible="false">
-                        <semantic:titleHeading>
-                            <Title text="{log>USERNAME}"/>
-                        </semantic:titleHeading>
-                        <semantic:headerContent>
-                            <layout:VerticalLayout width="100%">
-                                <layout:HorizontalLayout>
-                                    <ObjectAttribute text="开始调用接口时间:"/>
-                                    <Text text="{log>STARTCALLINTERFACETIME}" class="sapUiSmallMarginBegin"/>
-                                </layout:HorizontalLayout>
-                            </layout:VerticalLayout>
-                            <layout:VerticalLayout width="100%">
-                                <layout:HorizontalLayout>
-                                    <ObjectAttribute text="结束调用接口时间:"/>
-                                    <Text text="{log>ENDCALLINTERFACETIME}" class="sapUiSmallMarginBegin"/>
-                                </layout:HorizontalLayout>
-                            </layout:VerticalLayout>
-                            <layout:VerticalLayout width="100%">
-                                <layout:HorizontalLayout>
-                                    <ObjectAttribute text="开始操作时间:"/>
-                                    <Text text="{log>STARTCOMMANDTIME}" class="sapUiSmallMarginBegin"/>
-                                </layout:HorizontalLayout>
-                            </layout:VerticalLayout>
-                            <layout:VerticalLayout width="100%">
-                                <layout:HorizontalLayout>
-                                    <ObjectAttribute text="结束操作时间:"/>
-                                    <Text text="{log>ENDCOMMANDTIME}" class="sapUiSmallMarginBegin"/>
-                                </layout:HorizontalLayout>
-                            </layout:VerticalLayout>
-                            <layout:VerticalLayout width="100%">
-                                <layout:HorizontalLayout>
-                                    <ObjectAttribute text="接口信息:"/>
-                                    <Text 
-                                        text="{=JSON.stringify(JSON.parse(${log>INTERFACEINFO}), null, '&#160;&#160;&#160;&#160;')}"
-                                        class="sapUiSmallMarginBegin"/>
-                                </layout:HorizontalLayout>
-                            </layout:VerticalLayout>
-                            <layout:VerticalLayout width="100%">
-                                <layout:HorizontalLayout>
-                                    <ObjectAttribute text="请求数据:"/>
-                                    <Text 
-                                        text="{=JSON.stringify(JSON.parse(${log>REQUESTDATA}), null, '&#160;&#160;&#160;&#160;')}" class="sapUiSmallMarginBegin"/>
-                                </layout:HorizontalLayout>
-                            </layout:VerticalLayout>
-                            <layout:VerticalLayout width="100%">
-                                <layout:HorizontalLayout>
-                                    <ObjectAttribute text="响应数据:"/>
-                                    <Text 
-                                        text="{=JSON.stringify(JSON.parse(${log>RESPONSEDATA}), null, '&#160;&#160;&#160;&#160;')}" class="sapUiSmallMarginBegin"/>
-                                </layout:HorizontalLayout>
-                            </layout:VerticalLayout>
-                            
-                        </semantic:headerContent>
-                    </semantic:SemanticPage>
-                </layout:SplitPane>
-            </layout:PaneContainer>
-        </layout:ResponsiveSplitter>
+        <layout:BlockLayout>
+            <layout:BlockLayoutRow>
+                <layout:BlockLayoutCell>
+                    <layout:VerticalLayout>
+                        <Label text="用户名"/>
+                        <Input class="sapUiSizeCompact"/>
+                    </layout:VerticalLayout>
+                </layout:BlockLayoutCell>
+                <layout:BlockLayoutCell>
+                    <layout:VerticalLayout>
+                        <Label text="控制器名称"/>
+                        <Input class="sapUiSizeCompact"/>
+                    </layout:VerticalLayout>
+                </layout:BlockLayoutCell>
+                <layout:BlockLayoutCell>
+                    <layout:VerticalLayout>
+                        <Label text="字段名"/>
+                        <Input class="sapUiSizeCompact"/>
+                    </layout:VerticalLayout>
+                </layout:BlockLayoutCell>
+                <layout:BlockLayoutCell>
+                    <layout:VerticalLayout>
+                        <Label text="备注"/>
+                        <Input class="sapUiSizeCompact"/>
+                    </layout:VerticalLayout>
+                </layout:BlockLayoutCell>
+            </layout:BlockLayoutRow>
+        </layout:BlockLayout>
+        <table:Table
+            id="logTable"
+            rows="{log>/logData}"
+            selectionBehavior="RowOnly"
+            selectionMode="Single"
+            alternateRowColors="true"
+            rowSelectionChange="onRowSelectionChange"
+            width="80rem">
+            <table:extension>
+                <Title text="日志"/>
+            </table:extension>
+            <table:rowSettingsTemplate>
+                <table:RowSettings 
+                    highlight="{
+                        path:'log>MSGTY',
+                        formatter:'.formatter.msgtyFormat'
+                    }"
+                />
+            </table:rowSettingsTemplate>
+            <table:columns>
+                <table:Column hAlign="Center" width="6rem">
+                    <Label text="用户名"/>
+                    <table:template>
+                        <Text text="{log>USERNAME}"/>
+                    </table:template>
+                </table:Column>
+                <table:Column hAlign="Center" width="18rem">
+                    <Label text="控制器名称"/>
+                    <table:template>
+                        <Text text="{log>CONTROLLERNAME}"/>
+                    </table:template>
+                </table:Column>
+                <table:Column hAlign="Center" width="6rem">
+                    <Label text="字段名"/>
+                    <table:template>
+                        <Text text="{log>FIELDNAME}"/>
+                    </table:template>
+                </table:Column>
+                <table:Column hAlign="Center" width="15rem">
+                    <Label text="备注"/>
+                    <table:template>
+                        <Text text="{log>REMARK}"/>
+                    </table:template>
+                </table:Column>
+                <table:Column hAlign="Center" width="6rem">
+                    <Label text="处理时长(s)"/>
+                    <table:template>
+                        <Text text="{=${log>PROCESSTIME}?parseFloat(${log>PROCESSTIME}).toFixed(3):''}"/>
+                    </table:template>
+                </table:Column>
+                <table:Column hAlign="Center" width="20rem">
+                    <Label text="开始调用接口时间"/>
+                    <table:template>
+                        <Text text="{log>STARTCALLINTERFACETIME}"/>
+                    </table:template>
+                </table:Column>
+                <table:Column hAlign="Center" width="20rem">
+                    <Label text="结束调用接口时间"/>
+                    <table:template>
+                        <Text text="{log>ENDCALLINTERFACETIME}"/>
+                    </table:template>
+                </table:Column>
+                <table:Column hAlign="Center" width="20rem">
+                    <Label text="开始操作时间"/>
+                    <table:template>
+                        <Text text="{log>STARTCOMMANDTIME}"/>
+                    </table:template>
+                </table:Column>
+                <table:Column hAlign="Center" width="20rem">
+                    <Label text="结束操作时间"/>
+                    <table:template>
+                        <Text text="{log>ENDCOMMANDTIME}"/>
+                    </table:template>
+                </table:Column>
+            </table:columns>
+        </table:Table>
     </Page>
 </mvc:View>
