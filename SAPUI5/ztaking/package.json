@@ -1,0 +1,10 @@
+{
+    "name":"ztaking",
+    "version": "1.0.0",
+    "author": "Taking",
+    "description": "测试控件",
+    "scripts": {
+        "start":"ui5 serve --port=1998",
+        "build":"ui5 build --clean-dest"
+    }
+}
